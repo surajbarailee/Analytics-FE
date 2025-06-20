@@ -51,18 +51,18 @@ export function AppSidebar() {
     },
   ]
 
-  const projects = [
-    {
-      name: "Git Analytics",
-      url: "/projects/git-analytics",
-      icon: Folder,
-    },
-    {
-      name: "Dashboard UI",
-      url: "/projects/dashboard-ui",
-      icon: Folder,
-    },
-  ]
+  // const projects = [
+  //   {
+  //     name: "Git Analytics",
+  //     url: "/projects/git-analytics",
+  //     icon: Folder,
+  //   },
+  //   {
+  //     name: "Dashboard UI",
+  //     url: "/projects/dashboard-ui",
+  //     icon: Folder,
+  //   },
+  // ]
 
   const user = {
     name: "John Doe",
@@ -82,7 +82,7 @@ export function AppSidebar() {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={mainNavItems} />
-        <NavProjects projects={projects} />
+        {/* <NavProjects projects={projects} /> */}
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={user} />

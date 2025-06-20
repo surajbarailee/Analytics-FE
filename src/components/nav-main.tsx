@@ -1,6 +1,7 @@
 "use client"
 
 import { ChevronRight, type LucideIcon } from "lucide-react"
+import { Link, useLocation } from "react-router-dom"
 
 import {
   Collapsible,
@@ -32,12 +33,14 @@ export function NavMain({
     }[]
   }[]
 }) {
+  const location = useLocation()
+
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => {
-          const isActive = item.isActive
+          const isActive = location.pathname === item.url || item.isActive
           
           // If item has sub-items, render as collapsible
           if (item.items && item.items.length > 0) {
@@ -59,12 +62,13 @@ export function NavMain({
                   <CollapsibleContent>
                     <SidebarMenuSub>
                       {item.items?.map((subItem) => {
+                        const isSubActive = location.pathname === subItem.url
                         return (
                           <SidebarMenuSubItem key={subItem.title}>
-                            <SidebarMenuSubButton asChild>
-                              <a href={subItem.url}>
+                            <SidebarMenuSubButton asChild isActive={isSubActive}>
+                              <Link to={subItem.url}>
                                 <span>{subItem.title}</span>
-                              </a>
+                              </Link>
                             </SidebarMenuSubButton>
                           </SidebarMenuSubItem>
                         )
@@ -80,10 +84,10 @@ export function NavMain({
           return (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild tooltip={item.title} isActive={isActive}>
-                <a href={item.url}>
+                <Link to={item.url}>
                   {item.icon && <item.icon />}
                   <span>{item.title}</span>
-                </a>
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           )
